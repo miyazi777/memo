@@ -178,7 +178,8 @@ g cherry-pick a6a57e7
 git checkout B
 ```
 
-```.zshrc
+.zshrc
+```
 alias -g B='`git branch | peco --prompt "GIT BRANCH>" | head -n 1 | sed -e "s/^\*\s*//g"`'
 ```
 
@@ -193,7 +194,8 @@ http://qiita.com/Kuniwak/items/b711d6c3e402dfd9356b
 g co hoge
 ```
 
-```.zshrc
+.zshrc
+```
 alias g='git'
 git config --global alias.co 'checkout'
 ```
