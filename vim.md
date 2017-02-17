@@ -424,7 +424,8 @@ vimの個人的な設定について
 
 ctrl + e
 
-```.vimrc
+.vimrc
+```
 autocmd BufNewFile,BufRead *.rb nnoremap <C-e> :!ruby %<CR>
 ```
 
@@ -432,10 +433,10 @@ autocmd BufNewFile,BufRead *.rb nnoremap <C-e> :!ruby %<CR>
 個人的なhow to
 ---------------------------
 
-## vimを一旦、抜けて標準のターミナルに戻り、復帰
+## vimを一旦、抜けてターミナルに戻り、復帰する方法
 
 ### バックグラウンド（ターミナル）に退避
-<C-z>
+C-z
 
 ### バックグラウンドプロセスの確認
 jobs
