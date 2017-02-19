@@ -48,7 +48,9 @@ npm bin
 | npm install -g <package-name> | パッケージをグローバルにインストール                     |
 | npm remove <package-name>     | パッケージを削除する                                     |
 | npm update                    | パッケージをまとめてインストール・アップデート           |
-
+| npm update <package-name>     | 指定パッケージをアップデート                             |
+| npm outdated                  | 新しいバージョンが存在するパッケージを表示               |
+| npm update -g npm             | npm自体のupdate                                          |
 
 ## 類似ツール
 yarn
