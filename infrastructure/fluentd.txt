@@ -1,0 +1,59 @@
+# インストール
+sudo curl -L http://toolbelt.treasure-data.com/sh/install-redhat.sh | sh
+
+# 起動・停止
+sudo service td-agent start
+sudo service td-agent end
+
+
+
+# 設定ファイルの場所
+/etc/td-agent/td-agent.conf
+
+# fluentd-pluginの追加方法
+/usr/lib64/fluent/ruby/bin/fluent-gem install-plugin-redshift
+
+
+# チュートリアル1 (指定タグで出力したデータをファイルに出力する)
+
+1 設定ファイルに以下の設定を追加
+
+<match test.**>
+  type file
+  path /tmp/test
+</match>
+
+2 td-agentを再起動
+
+3 以下のコマンドを実行
+echo '{"json":"message"}' | /usr/lib64/fluent/ruby/bin/fluent-cat test.ts
+
+4 /tmp/testに新しいデータが追加されていること確認
+cat /tmp/test.*
+
+
+# チュートリアル2 (in_tailプラグインの実験)
+
+1 設定ファイルに以下の設定を追加
+
+<match test.**>
+  type file
+  path /tmp/test
+</match>
+
+<source>
+  type tail
+  path /tmp/input.log
+  tag test.tail
+  format csv
+  keys key1, key2
+</source>
+
+2 td-agentを再起動
+
+3 以下のコマンドを実行
+echo 'value1, value2' >> /tmp/input.log
+
+4 /tmp/testファイルにデータが追加されている事を確認
+
+

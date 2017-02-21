@@ -1,0 +1,46 @@
+-------------------- インストール
+---※現状、mac os x上ではknifeがうまく動作しない為、インストールはできても使うことができない(2014/4/27) 
+
+下記のコマンドでインストールすることができる
+curl -L http://www.opscode.com/chef/install.sh | sudo bash
+
+------------- macでchef soloが動作しないのでcentos上にchefをインストールし、レシピを実行することにする
+--- 以下、centos上でのやり方
+
+(1)インストール
+以下のコマンドでインストール。0.11からはこの方法を推奨している。
+curl -L https://www.opscode.com/chef/install.sh | sudo bash
+
+(2)クックブックを作成
+以下、apacheをインストールするクックブック
+knife cookbook create apache2-take-simple -o .
+
+(3)chef solo用の設定ファイルを作成
+solo.rbというファイル名で以下の内容
+cookbook_path [ '/home/ubuntu' ]
+
+(4)適用するrecipeファイルを列挙する設定ファイルを作成
+solo.jsonというファイル名で以下の内容
+{
+        "run_list": [
+                "recipe[apache2-take-simple]"
+        ]
+}
+
+(5)chef soloを実行
+以下のコマンドで実行
+sudo chef-solo -j solo.json -c solo.rb
+
+
+------------- cookbookについてのメモ 
+attributes		レシピ内で使える変数
+definitions		独自定義のResource
+files
+libraries
+metadata.rb
+providers		
+recipes			レシピを置く場所
+resources
+templates		テンプレートファイル
+
+
