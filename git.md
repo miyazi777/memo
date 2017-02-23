@@ -75,7 +75,6 @@ git branch <brandh-name>
 ## ブランチの切り替え
 git checkout <branch-name>
 
-
 ## ブランチをリモートに反映
 git commit -m ""
 git push origin <branch-name>
@@ -200,5 +199,17 @@ alias g='git'
 git config --global alias.co 'checkout'
 ```
 
+## 削除ファイルを復活させる
+* 復活させたいファイルが含まれているコミットハッシュを調べる(git log --onelineなどで)
+* 以下のような形で復活させたいファイルをcheckoutする
+
+```
+git checkout <commit-hash> -- <file-path>
+```
+
+example
+```
+git checkout 098a59d -- db/migrate/20160620085148_create_warehousing_records.rb
+```
 
 
