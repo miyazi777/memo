@@ -302,6 +302,46 @@ end
           )
 ```
 
+### factoryのtraitの使い方
+
+account - accounts_plansのように関連がある時、factories内で以下のように表現できる
+```
+FactoryGirl.define do
+  factory :account, class: Account do
+    status Account.statuses[:enable]
+    postal_code '1080074'
+    m_pref_id '13'
+    city '港区高輪'
+    address_line1  '3-25-29'
+    address_line2  'The Site #07'
+    organization '株式会社フライデーナイト'
+    tel '0364557650'
+    billing_reference_date Date.new(2015, 1, 5)
+
+    trait :with_starter_plan do
+      after(:create) do |account|
+        create(:accounts_plans, account: account, plan_id: 1)
+      end
+    end
+
+    trait :with_enterprise_plan do
+      after(:create) do |account|
+        create(:accounts_plans, account: account, plan_id: 4)
+      end
+    end
+
+  end
+end
+```
+呼び出し側は以下のようにrspec内でデータを作成可能
+```
+  describe "check_order_array_print_limit?のテスト" do
+    let!(:starter_account) {create(:account, :with_starter_plan)}
+    let!(:enterprise_account) {create(:account, :with_enterprise_plan)}
+```
+
+
+
 ### Faikerとの連携
 
 

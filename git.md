@@ -136,7 +136,7 @@ git fetch
 git checkout -b feature/issue_xxx origin/feature/issue_xxx
 
 ## ローカルブランチをリモートブランチで上書きする
-git fetch origin/feature/issue_915
+git fetch origin feature/issue_915
 git reset --hard origin/feature/issue_915
 
 ## pullとrebaseを同時に行う
