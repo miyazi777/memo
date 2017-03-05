@@ -26,7 +26,59 @@ pry
 |hist|コマンドの履歴の表示|
 |!!!|pryの終了|
 
-# その他
+
+
+
+
+railsでのデバック
+-------------------------------------
+
+## pryで条件付きブレークポイント
+以下をソース内に記述する
+```
+binding.pry if <expresion>
+```
+
+## pryの設定
+<projectroot>/.pryrcに記述することで有効に
+
+### 設定例
+
+コマンドのエイリアス
+```
+# step command alias
+if defined?(PryByebug)
+  Pry.commands.alias_command 's', 'step'
+  Pry.commands.alias_command 'n', 'next'
+  Pry.commands.alias_command 'f', 'finish'
+  Pry.commands.alias_command 'c', 'continue'
+end
+```
+
+コマンドを押すだけで前のコマンドを繰り返せる設定
+```
+# Hit Enter to repeat last command
+Pry::Commands.command /^$/, "repeat last command" do
+  _pry_.run_command Pry.history.to_a.last
+end
+```
+
+editコマンドから起動するテキストエディタを選択可能
+editコマンド__上からソースを編集すると再読込されている
+```
+Pry.config.editor = "vim"
+```
+
+## 参考
+http://qiita.com/k0kubun/items/b118e9ccaef8707c4d9f
+
+
+
+
+
+
+その他
+-------------------------------------
 
 * pry-navというgemを使うことでステップ実行できる？
 
