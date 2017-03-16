@@ -10,6 +10,10 @@ go build [source-file]
 
 GOPATH環境変数を設定しておく必要がある
 
+# vim-goについて
+
+:GoFmt  ソースの整形
+
 
 
 

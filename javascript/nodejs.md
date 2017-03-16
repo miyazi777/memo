@@ -1,3 +1,6 @@
+
+
+
 # node.jsのバージョンアップ
 以下の手順では安定版にバージョンアップした。最新版にバージョンアップするにはstableの部分をlatestにすること
 
@@ -46,14 +49,43 @@ npm bin
 | npm ls                        | インストール済パッケージを表示（依存パッケージを表示）   |
 | npm install <pacakge-name>    | パッケージをインストールする  npm i <package-name>でも可 |
 | npm install -g <package-name> | パッケージをグローバルにインストール                     |
+| npm install -save <package-name> | package.jsonのdependenciesにバージョン付きで書き込む                     |
+| npm install -save-dev <package-name> | package.jsonのdevDependenciesにバージョン付きで書き込む。開発時に使用するライブラリはこちらを指定     |
 | npm remove <package-name>     | パッケージを削除する                                     |
 | npm update                    | パッケージをまとめてインストール・アップデート           |
 | npm update <package-name>     | 指定パッケージをアップデート                             |
 | npm outdated                  | 新しいバージョンが存在するパッケージを表示               |
 | npm update -g npm             | npm自体のupdate                                          |
 
-## 類似ツール
-yarn
+
+### パッケージのバージョン指定
+
+以下はバージョン指定でのパッケージのインストール方法。
+以下のコマンドではwebpackの1.x系がインストールされる
+```
+npm install webpack@1.x
+```
+
+## yarnの簡単なまとめ
+### コマンド一覧
+| コマンド                     | 説明                                                                |
+|------------------------------|---------------------------------------------------------------------|
+| yarn init                    | package.jsonを作成                                                  |
+| yarn add <package-name>      | package.jsonのdependenciesに追記しながらパッケージをインストール    |
+| yarn add <package-name> -D   | package.jsonのdevDependenciesに追記しながらパッケージをインストール |
+| yarn add <package-name> -dev | 上と同じ                                                            |
+| yarn run <script-name>       | pacakge.jsonで定義したスクリプトを実行する                          |
+
+### パッケージのバージョンを指定する時
+
+<package-name>@<version>で指定
+
+webpackの1系のインストール
+```
+yarn add webpack@1.x
+```
+
+
 
 
 # webpackについて
@@ -201,7 +233,4 @@ node.jsのバージョン切り替えツール。 rubyに対するrvmのよう�
 
 ## 現状の問題点
 起動が遅い。遅いのでnodebrewに乗り換えてみる -> 切り替えた。nodebrewの方が起動が速い
-
-
-
 
