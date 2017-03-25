@@ -47,6 +47,9 @@ rename_column :articles, :title, :changed_title
                <table_name> <bedore_name> <after_name>
 ```
 
+### カラム削除
+rails g migration remove_account_id_to_pending_config account_id:integer
+
 
 ### ユニークインデックス追加
 rails g migration add_index_to_order
@@ -122,9 +125,6 @@ foreign_key: true   外部キー
 ### ユニークインデックス
 unique: true
 
-
-### カラム削除
-rails g migration remove_account_id_to_pending_config account_id:integer
 
 ### 外部キーの削除
 ```
