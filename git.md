@@ -135,6 +135,9 @@ g reset --soft HEAD~1
 git fetch
 git checkout -b feature/issue_xxx origin/feature/issue_xxx
 
+## リモートブランチをローカル環境に引っ張ってくる
+git checkout -b hoge origin/hoge
+
 ## ローカルブランチをリモートブランチで上書きする
 git fetch origin feature/issue_915
 git reset --hard origin/feature/issue_915
@@ -212,4 +215,6 @@ example
 git checkout 098a59d -- db/migrate/20160620085148_create_warehousing_records.rb
 ```
 
+## ブランチを指定してcloneする
+git clone -b <branch-name> <github-url>
 

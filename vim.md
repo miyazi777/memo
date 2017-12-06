@@ -1,6 +1,35 @@
 vim memo
 ===========================
 
+indent設定
+---------------------------
+
+~/.vimrcに以下の記述を追記
+```
+filetype plugin indent on
+```
+
+~/.vim下にftpluginディレクトリ作成
+
+touch filetype.vimで作成
+
+filetype.vim内を以下のようにファイルの拡張子ごとにどの設定ファイルを適用するか記述する
+```
+augroup filetypedetect
+  au BufRead,BufNewFile *.rb setfiletype ruby
+  au BufRead,BufNewFile *.haml setfiletype haml
+augroup END
+```
+
+ファイル拡張子ごとのインデントを設定する
+~/.vim/ftplugin/ruby.vim
+```
+set expandtab
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+```
+
 
 shortcut(いつでも)
 ---------------------------
@@ -81,6 +110,8 @@ folding(折りたたみ)
 
 標準のvimgrepの使い方
 ---------------------------
+※現在は主にunite + grep(highway)でのgrepがほとんどなので以下の形は使わない。詳細はunite.vimの部分に記述
+
 grepし、結果を一覧表示する。一覧はカーソルキーで移動でき、リターンキーで表示される
 ```
 :vim {pattern} {file} | cw
@@ -318,6 +349,15 @@ nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
 nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
 ```
 
+### 現在の設定でのgrep関連のコマンド一覧
+
+| コマンド | 説明                                         |
+|----------|----------------------------------------------|
+| ,g       | パターンを入力して検索                       |
+| ,r       | 前回の検索結果を再表示                       |
+| ,cg      | 現在のカーソル上の単語をパターンとして検索   |
+| ,dg      | 検索ディレクトリを指定してから検索           |
+
 
 Nerdtree
 ---------------------------
@@ -398,7 +438,34 @@ visSum
 ### 使い方
 ビジュアルモードで複数行を選択した状態で<Leader>suを押すとステータスラインに計算結果が出力される
 
+syntastic
+---------------------------
+## 概要
+ソースの文法チェック
 
+## 使い方
+基本的にはインストールするだけで保存時にファイルに応じたチェックをしてくれる。
+以下のコマンドで手動チェックすることもできる。
+```
+:SyntasticCheck
+```
+
+vim-go
+---------------------------
+
+## 使い方
+:GoFmt  フォーマットする
+:GoRun  実行する
+
+### 以下のような.vimrcでCtrl-eで実行できるようにした
+```
+autocmd BufNewFile,BufRead *.go nnoremap <C-e> :GoRun %<CR>
+```
+
+
+
+## 参考サイト
+http://d.hatena.ne.jp/akihiro_ob/20130304/1362367573
 
 vimの設定について
 ---------------------------
@@ -538,6 +605,18 @@ insert modeの時、<ctrl-r>=<計算式>
 
 ## インデント
 visualモードで選択し、>や<でインデントを調整可能
+
+## yankの履歴からコピペ
+以下のコマンドで履歴を確認できる。
+```
+:reg
+```
+
+レジスタとヤンク内容を確認したら以下の操作でコピペ可能。
+下の例は0レジスタの内容をペーストする
+```
+"0p
+```
 
 
 参考サイト
